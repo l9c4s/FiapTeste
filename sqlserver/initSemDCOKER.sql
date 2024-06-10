@@ -91,4 +91,3 @@ INSERT INTO FiapTest.dbo.ALUNO_TURMA
 VALUES(1, 1),
 (2, 1),
 (3, 1);
-G
