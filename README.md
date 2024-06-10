@@ -18,8 +18,8 @@ altere para essa string conforme a sua necessidade
 # 3 Passo - com isso feito agora devemos executar 2 comando para rodar a webApi.
 agora navegue ate o diretorio /src/WebApi/
 ao entrar dentro do diretorio  execute os seguintes comandos dentro do CLI ou Prompt
-   # 1 - dotnet restore
-   # 2 - dotnet Run
+    1 - dotnet restore
+    2 - dotnet Run
 
 O primeiro comando ira restaurar as depdencias do projeto e o segundo ira rodar a API
 para verificar se esta funcionando no pronto automaticamente o sistema ira mostrar
@@ -29,8 +29,8 @@ Ps o numero da porta pode mudar. na linha de comando o sistema diz qual porta es
 # 4 Passo - Os próximos passos são basicamente os mesmos, porém na nossa aplicação front-end.
 navegue ate o diretorio /src/FrontEnd.Fiap
 ao entrar dentro do diretorio  execute os seguintes comandos dentro do CLI ou Prompt
-   # 1 - dotnet restore
-   # 2 - dotnet Run
+    1 - dotnet restore
+    2 - dotnet Run
    
 verificar qual qual porta o sistema ira rodar e acessar pode estar na porta 
 http://localhost:5152, na linha de comando o sistema diz qual esta rodando
