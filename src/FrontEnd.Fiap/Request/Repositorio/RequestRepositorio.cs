@@ -12,7 +12,7 @@ namespace FrontEnd.Fiap.Request.Repositorio
         private readonly string _url;
         public RequestRepositorio() { 
             _httpClient = new HttpClient();
-            _url = "https://localhost:44358/api/";
+            _url = "http://localhost:5093/api/";
         }
 
 
