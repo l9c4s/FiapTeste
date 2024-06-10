@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    build:
+      context: ./sqlserver
+    container_name: sqlserver
+    environment:
+      - SA_PASSWORD=FiapTest01
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+      - ./sqlserver/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - app-network
+
+  webapi:
+    build:
+      context: /src/WebApi
+    container_name: webapi
+    ports:
+      - "44358:80"
+    depends_on:
+      - sqlserver
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: /src/FrontEnd.Fiap
+    container_name: frontend
+    ports:
+      - "44360:80"
+    depends_on:
+      - webapi
+    networks:
+      - app-network
+
+volumes:
+  sqlserverdata:
+
+networks:
+  app-network:
+    driver: bridge

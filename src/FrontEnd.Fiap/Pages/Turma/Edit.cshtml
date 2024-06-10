@@ -1,0 +1,80 @@
+﻿@page
+@model FrontEnd.Fiap.Pages.Turma.EditModel
+@{
+
+}
+
+
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded p-3">
+        <h1 class="text-center mb-5">Editar Turma</h1>
+        @if (!string.IsNullOrEmpty(Model.errormessage))
+        {
+            <div class="alert alert-danger" role="alert">
+                @Model.errormessage
+            </div>
+        }
+
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Id</label>
+                <div class="col-sm-8">
+                    <input readonly asp-for="@Model.TurmaDTO.id" class="form-control-plaintext" />
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Nome</label>
+                <div class="col-sm-8">
+                    <input asp-for="TurmaDTO.Turma" class="form-control" />
+                    <span asp-validation-for="TurmaDTO.Turma" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Curso</label>
+                <div class="col-sm-8">
+                    <select asp-for="@Model.TurmaDTO.Curso_id" class="form-control">
+                        @foreach (var curso in Model.CursoDTO)
+                        {
+                            <option value="@curso.Id">@curso.Nome</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Ano</label>
+                <div class="col-sm-8">
+                    <input type="date" asp-for="TurmaDTO.Ano" class="form-control" />
+                    <span asp-validation-for="TurmaDTO.Ano" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label" asp-for="@Model.TurmaDTO.Ativo"></label>
+                <div class="col-sm-8">
+                    <select asp-for="@Model.TurmaDTO.Ativo" class="form-control">
+                        <option value="1">Ativo</option>
+                        <option value="0">Inativo</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <div class="offset-md-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-primary">
+                        Salvar
+                    </button>
+                </div>
+                <div class="col-sm-4 d-grid">
+                    <a class="btn btn-outline-primary" href="/Turma/index" role="button">Voltar </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@page
+@model FrontEnd.Fiap.Pages.Relacionamento.CreateModel
+@{
+    ViewData["Title"] = "Relacionar Turmas";
+}
+
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <h1>Relacionar Turmas</h1>
+        <div>
+        </div>
+        <a class="btn btn-primary mt-3 mb-3 col-sm-2" href="/Relacionamento/index" role="button">Voltar </a>
+    </div>
+     
+    <form method="post">
+        <div class="row g-3">
+            <div class="form-group">
+                <label for="TurmaId">Turma</label>
+                <select asp-for="@Model.CreateRelacDTO.turma_id" class="form-control"  onchange="this.form.submit()">
+                    <option value="null">Selecione uma Turma</option>
+                    @foreach (var turma in Model.Turmas)
+                    {
+                        <option value="@turma.Value" selected="@(turma.Value == Model.SelectedTurmaId?.ToString() ? "selected" : null)">
+                            @turma.Text
+                        </option>
+                    }
+                </select>
+            </div>
+
+            @if (Model.alunoDTODispoivelParaEsterCurso != null && Model.alunoDTODispoivelParaEsterCurso.Any())
+            {
+                <div class="form-group mt-3">
+                    <label for="AlunoId">Alunos Disponiveis para esta Turma</label>
+                    <select asp-for="@Model.CreateRelacDTO.aluno_id" class="form-control">
+                        <option value="null">Selecione um Aluno</option>
+                        @foreach (var aluno in Model.alunoDTODispoivelParaEsterCurso)
+                        {
+                            <option value="@aluno.Id">@aluno.Nome</option>
+                        }
+                    </select>
+                </div>
+            }
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 mb-3">Adicionar Relacionamento</button>
+    </form>
+</div>
+
+    <div class="mt-4">
+        <h2>Alunos da Turma</h2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Ativo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.alunoDTOs != null && Model.alunoDTOs.Any())
+                {
+                    foreach (var aluno in Model.alunoDTOs)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => aluno.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => aluno.Ativo)
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="2">Não há alunos nessa turma</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
